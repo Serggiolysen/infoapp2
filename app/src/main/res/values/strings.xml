@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">InfoApp</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="attack_type_melee">Melee</string>
+    <string name="attack_type_ranged">Ranged</string>
+    <string name="state_loading">Loading…</string>
+    <string name="carry_not_found">carry not found</string>
+    <string name="carry_title">carry title</string>
+    <string name="title_home">home</string>
+    <string name="title_dashboard">dashboard</string>
+    <string name="title_notifications">notifications</string>
+    <string name="carry_antipick">Antipick</string>
+</resources>
