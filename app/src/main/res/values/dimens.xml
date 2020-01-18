@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="hero_detail_avatar">250dp</dimen>
+    <item name="divider_height" type="dimen" format="float">0.5</item>
+</resources>

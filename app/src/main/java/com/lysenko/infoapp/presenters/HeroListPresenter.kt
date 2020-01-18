@@ -6,15 +6,15 @@ import com.lysenko.infoapp.views.HeroListView
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
-class HeroListPresenter(var heroListView: HeroListView):IHeroListPresenter {
+class HeroListPresenter(var heroListView: HeroListView) : IHeroListPresenter {
 
-    private val heroesRepositoryImpl =  HeroesRepositoryImpl()
+    private val heroesRepositoryImpl = HeroesRepositoryImpl()
 
-    override fun fetchHeroes(){
+    override fun fetchHeroes() {
 
         heroListView.showLoading()
 
-        heroesRepositoryImpl.fetchHeroes().subscribe(object :Observer<List<Hero>>{
+        heroesRepositoryImpl.fetchHeroes().subscribe(object : Observer<List<Hero>> {
             override fun onComplete() {
 
             }
@@ -32,16 +32,5 @@ class HeroListPresenter(var heroListView: HeroListView):IHeroListPresenter {
             }
 
         })
-
-//        GlobalScope.launch(Dispatchers.IO) {
-//            try {
-//                val heroes = heroesRepositoryImpl.fetchHeroes().await()
-//                withContext(Dispatchers.IO){
-//                    heroListView.showHeroes(listWithHeroes = heroes)
-//                }
-//            }catch (e:Exception){
-//                e.printStackTrace()
-//            }
-//        }
     }
 }

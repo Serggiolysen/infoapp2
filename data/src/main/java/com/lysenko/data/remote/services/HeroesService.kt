@@ -1,11 +1,11 @@
 package com.lysenko.data.remote.services
 
-import com.lysenko.data.remote.helpers.models.HeroApi
+import com.lysenko.data.remote.helpers.models.HeroStatApi
 import io.reactivex.Observable
 import retrofit2.http.GET
 
 interface HeroesService {
 
-    @GET
-    fun getHeroes(): List<HeroApi>
+    @GET("./heroStats")
+    fun getHeroesStats(): Observable<List<HeroStatApi>>
 }
