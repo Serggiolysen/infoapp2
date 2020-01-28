@@ -4,6 +4,7 @@ class TableHeroSqlContract {
 
     companion object{
 
-        const val fetch = "SELECT * FROM ${RoomContract.tableHero}"
+        const val fetch = "SELECT * FROM ${RoomNamesContract.tableHeroName}"
+
     }
 }

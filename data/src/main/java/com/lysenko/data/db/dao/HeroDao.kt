@@ -6,13 +6,17 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.lysenko.data.db.contracts.TableHeroSqlContract
 import com.lysenko.data.db.model.HeroEntity
+import io.reactivex.Observable
 
 @Dao
 interface HeroDao {
 
     @Query(TableHeroSqlContract.fetch)
-    fun fetchHeroes():List<HeroEntity>
+    fun fetchHeroes(): Observable<List<HeroEntity>>
 
     @Insert(entity = HeroEntity::class, onConflict = OnConflictStrategy.REPLACE)
-    fun insertHero(heroEntity: HeroEntity)
+    fun insertHero(heroEntityList: List<HeroEntity>)
+
+    @Query(TableHeroSqlContract.fetch)
+    fun fetchHeroesList(): List<HeroEntity>
 }

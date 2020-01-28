@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InfoApp</string>
+    <string name="app_name">яInfoApp</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="attack_type_melee">Melee</string>

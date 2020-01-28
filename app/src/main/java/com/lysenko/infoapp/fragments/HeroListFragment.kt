@@ -1,6 +1,7 @@
 package com.lysenko.infoapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,13 @@ import com.lysenko.infoapp.R
 import com.lysenko.infoapp.adapters.HeroAdapter
 import com.lysenko.domain.models.Hero
 import com.lysenko.infoapp.adapters.HeroClickHandler
+import com.lysenko.infoapp.di.App
 import com.lysenko.infoapp.helpers.Keys
 import com.lysenko.infoapp.presenters.HeroListPresenter
 import com.lysenko.infoapp.views.HeroListView
 import kotlinx.android.synthetic.main.fragment_heroes_list.*
 
 class HeroListFragment: Fragment(), HeroListView{
-
 
     lateinit var heroListPresenter: HeroListPresenter
     private lateinit var mAdapter: HeroAdapter
@@ -32,10 +33,10 @@ class HeroListFragment: Fragment(), HeroListView{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        heroListPresenter = HeroListPresenter(this)
+        heroListPresenter = HeroListPresenter(heroListView = this, roomAppDatabase = App.roomDataBase,
+                totalAppStartsCount = App.totalCount)
         heroListPresenter.fetchHeroes()
         setupAdapter()
-
     }
 
     private fun setupAdapter(){

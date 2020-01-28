@@ -1,13 +1,14 @@
 package com.lysenko.data.db.contracts
 
-class RoomContract {
+class RoomNamesContract {
 
     companion object{
 
         const val databaseApp = "InfoApp"
 
-        const val tableHero = "TableHero"
-        const val table2 = "Table2"
+        const val tableHeroName = "TableHero"
+
+
 
     }
 }
