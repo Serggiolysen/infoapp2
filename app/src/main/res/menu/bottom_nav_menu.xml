@@ -5,12 +5,12 @@
 
     <item
         android:id="@+id/heroListFragment"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:icon="@drawable/hero"
+        android:title="@string/title_heroes" />
 
     <item
         android:id="@+id/playersFragment"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:icon="@drawable/player"
+        android:title="@string/title_Players" />
 
 </menu>
