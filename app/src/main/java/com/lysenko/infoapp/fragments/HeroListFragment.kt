@@ -1,7 +1,6 @@
 package com.lysenko.infoapp.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,26 +40,26 @@ class HeroListFragment: Fragment(), HeroListView{
 
     private fun setupAdapter(){
         mAdapter = HeroAdapter()
-        recyclerHeroList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerHeroList.adapter = mAdapter
+        recyclerPlayersList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerPlayersList.adapter = mAdapter
         mAdapter.attachClickHandler(object :HeroClickHandler{
             override fun onItemClick(item: Hero) {
                 val bundle = Bundle()
                 bundle.putParcelable(Keys.Hero.title, item)
-                recyclerHeroList.findNavController().navigate(R.id.heroDetailsFragment, bundle)
+                recyclerPlayersList.findNavController().navigate(R.id.heroDetailsFragment, bundle)
             }
         })
     }
 
     override fun showHeroes(listWithHeroes: List<Hero>) {
-        recyclerHeroList.visibility = View.VISIBLE
+        recyclerPlayersList.visibility = View.VISIBLE
         loadingMessage.visibility = View.GONE
 
         mAdapter.setData(listWithHeroes)
     }
 
     override fun showLoading() {
-        recyclerHeroList.visibility = View.GONE
+        recyclerPlayersList.visibility = View.GONE
         loadingMessage.visibility = View.VISIBLE
     }
 }

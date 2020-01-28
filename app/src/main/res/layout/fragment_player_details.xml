@@ -16,12 +16,12 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/heroAvatar"
+                android:id="@+id/playerAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="240dp" />
 
             <TextView
-                android:id="@+id/heroName"
+                android:id="@+id/playerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
@@ -31,8 +31,10 @@
                 android:textColor="@color/headline_light"
                 android:textSize="26sp" />
 
+
+
             <TextView
-                android:id="@+id/heroRole"
+                android:id="@+id/account_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -48,21 +50,36 @@
                 android:layout_height="1dp"
                 android:background="@color/divider_color_light" />
 
+
             <TextView
-                android:id="@+id/attack_type"
+                android:id="@+id/country_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
                 android:padding="16dp"
-
                 android:textColor="@color/subheadline_light"
                 android:textSize="20sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerCarryAntipick"
+            <TextView
+                android:id="@+id/team_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:padding="16dp"
+                android:textColor="@color/subheadline_light"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/is_pro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:padding="16dp"
+                android:textColor="@color/subheadline_light"
+                android:textSize="20sp" />
 
         </LinearLayout>
 

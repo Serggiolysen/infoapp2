@@ -11,5 +11,4 @@ data class HeroEntity(
         val avatar: String,
         val attack_type: Int,
         val image: String
-
 )

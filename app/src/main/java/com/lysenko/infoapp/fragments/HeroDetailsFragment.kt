@@ -34,6 +34,9 @@ class HeroDetailsFragment : Fragment() {
     private fun configureView() {
         heroArgs?.let { hero ->
             heroName.text = hero.title
+            if (hero.attackType == 0) {
+                attack_type.text = getString(R.string.meele)
+            } else attack_type.text = getString(R.string.ranged)
 
             Glide.with(heroAvatar)
                     .load("https://api.opendota.com${hero.img}")

@@ -2,8 +2,8 @@
     <string name="app_name">яInfoApp</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="attack_type_melee">Melee</string>
-    <string name="attack_type_ranged">Ranged</string>
+    <string name="attack_type_melee">Attack: melee</string>
+    <string name="attack_type_ranged">Attack: ranged</string>
     <string name="state_loading">Loading…</string>
     <string name="carry_not_found">carry not found</string>
     <string name="carry_title">carry title</string>
@@ -11,4 +11,10 @@
     <string name="title_dashboard">dashboard</string>
     <string name="title_notifications">notifications</string>
     <string name="carry_antipick">Antipick</string>
+    <string name="pro">Level: Pro</string>
+    <string name="not_pro">Level: Not Pro</string>
+    <string name="meele">Attack type: meele</string>
+    <string name="ranged">Attack type: ranged</string>
+    <string name="no_country_info">No country info</string>
+    <string name="not_consists_in_team">Not consists in team</string>
 </resources>

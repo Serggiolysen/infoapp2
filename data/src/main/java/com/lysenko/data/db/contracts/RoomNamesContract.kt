@@ -8,7 +8,7 @@ class RoomNamesContract {
 
         const val tableHeroName = "TableHero"
 
-
+        const val playerHeroName = "TablePlayer"
 
     }
 }

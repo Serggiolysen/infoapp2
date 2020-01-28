@@ -1,6 +1,6 @@
 package com.lysenko.data.remote.helpers
 
-import com.lysenko.data.remote.services.HeroesService
+import com.lysenko.data.remote.services.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -30,6 +30,5 @@ class RetrofitFactory {
                 .build()
     }
 
-    fun getHeroesService() = getRetrofitClient().create(HeroesService::class.java)
-
+    fun getHeroesService() = getRetrofitClient().create(ApiService::class.java)
 }

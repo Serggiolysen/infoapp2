@@ -18,7 +18,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_heroListFragment_to_settingsFragment2"
-            app:destination="@id/settingsFragment2"
+            app:destination="@id/playersFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="false"
@@ -29,10 +29,27 @@
         android:id="@+id/heroDetailsFragment"
         android:name="com.lysenko.infoapp.fragments.HeroDetailsFragment"
         android:label="HeroDetailsFragment"
-        tools:layout="@layout/fragment_hero_details"/>
+        tools:layout="@layout/fragment_hero_details">
+        <action
+            android:id="@+id/action_heroDetailsFragment_to_heroListFragment"
+            app:destination="@id/heroListFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/settingsFragment2"
-        android:name="com.lysenko.infoapp.fragments.SettingsFragment"
+        android:id="@+id/playersFragment"
+        android:name="com.lysenko.infoapp.fragments.PlayersFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_players">
+        <action
+            android:id="@+id/action_playersFragment_to_playerDetailsFragment"
+            app:destination="@id/playerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerDetailsFragment"
+        android:name="com.lysenko.infoapp.fragments.PlayerDetailsFragment"
+        android:label="PlayerDetailsFragment"
+        tools:layout="@layout/fragment_player_details">
+        <action
+            android:id="@+id/action_playerDetailsFragment_to_playersFragment"
+            app:destination="@id/playersFragment" />
+    </fragment>
 </navigation>

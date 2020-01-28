@@ -2,7 +2,7 @@ package com.lysenko.data.remote.helpers.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Json4Kotlin_Base(
+data class PlayersApi(
 
         @SerializedName("account_id") val account_id: Int,
         @SerializedName("steamid") val steamid: String,

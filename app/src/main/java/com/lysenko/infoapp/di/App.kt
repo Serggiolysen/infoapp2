@@ -25,7 +25,7 @@ class App : Application() {
 
         editor = prefs.edit()
 
-        totalCount = prefs.getInt("counter", 0)
+        totalCount = prefs.getInt("counter", -1)
         totalCount++
         editor.putInt("counter", totalCount)
         editor.commit()
