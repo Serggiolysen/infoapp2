@@ -6,57 +6,37 @@ import com.lysenko.domain.models.Hero
 
 object HeroConverterImpl {
 
-    fun convertApiToUI(list: List<HeroStatApi>): List<Hero> {
-        val tmpArrayList = ArrayList<Hero>()
-        for (it in list) {
-            tmpArrayList.add(
-                    Hero(
-                            id = it.id,
-                            title = it.name.replace("npc_dota_hero_", ""),
-                            icon = it.icon,
-                            attackType = if (it.attack_type == "Melee") {
-                                0
-                            } else {
-                                1
-                            },
-                            img = it.img)
-            )
-        }
-        return tmpArrayList
+    fun convertApiToUI(heroStatApi: HeroStatApi): Hero {
+
+        return Hero(id = heroStatApi.id,
+                title = heroStatApi.name.replace("npc_dota_hero_", ""),
+                icon = heroStatApi.icon,
+                attackType = if (heroStatApi.attack_type == "Melee") {
+                    0
+                } else {
+                    1
+                },
+                img = heroStatApi.img)
     }
 
-    fun convertApiToDB(list: List<HeroStatApi>): List<HeroEntity> {
-        val tmpArrayList = ArrayList<HeroEntity>()
-        for (it in list) {
-            tmpArrayList.add(
-                    HeroEntity(id = it.id,
-                            displayName = it.name.replace("npc_dota_hero_", ""),
-                            avatar = it.icon,
-                            attack_type = if (it.attack_type == "Melee") {
-                                0
-                            } else {
-                                1
-                            },
-                            image = it.img
-                    )
-            )
-        }
-        return tmpArrayList
+    fun convertApiToDB(heroStatApi: HeroStatApi): HeroEntity {
+        return HeroEntity(id = heroStatApi.id,
+                displayName = heroStatApi.name.replace("npc_dota_hero_", ""),
+                avatar = heroStatApi.icon,
+                attack_type = if (heroStatApi.attack_type == "Melee") {
+                    0
+                } else {
+                    1
+                },
+                image = heroStatApi.img
+        )
     }
 
-    fun convertDBtoUI(list: List<HeroEntity>): List<Hero> {
-        val tmpArrayList = ArrayList<Hero>()
-        for (it in list) {
-            tmpArrayList.add(
-                    Hero(id = it.id,
-                            title = it.displayName,
-                            icon = it.avatar,
-                            attackType = it.attack_type,
-                            img = it.image)
-            )
-        }
-        return tmpArrayList
-
+    fun convertDBtoUI(heroEntity: HeroEntity): Hero {
+        return Hero(id = heroEntity.id,
+                title = heroEntity.displayName,
+                icon = heroEntity.avatar,
+                attackType = heroEntity.attack_type,
+                img = heroEntity.image)
     }
-
 }

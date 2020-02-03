@@ -12,7 +12,7 @@ data class PlayerEntity(
         val personaname: String?,
         val name: String?,
         val country_code: String?,
-        val team_name:  String?,
+//        val team_name:  String?,
         val is_pro: Boolean
 
 )

@@ -3,9 +3,9 @@ package com.lysenko.domain.repositories.implementations
 import com.lysenko.data.remote.helpers.models.PlayersApi
 import com.lysenko.domain.models.Hero
 import com.lysenko.domain.models.Player
-import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 
 interface IRepository {
-    fun fetchHeroes(): Observable<List<Hero>>
-    fun fetchPlayers(): Observable<List<Player>>
+    suspend fun fetchHero(): Deferred<List<Hero>>
+    suspend fun fetchPlayers(): Deferred<List<Player>>
 }

@@ -1,55 +1,61 @@
 package com.lysenko.domain.repositories.implementations
 
-import android.util.Log
 import com.lysenko.data.db.RoomAppDatabase
 import com.lysenko.data.remote.providers.DotaProviderImpl
 import com.lysenko.domain.converters.HeroConverterImpl
 import com.lysenko.domain.converters.PlayerConverterImpl
 import com.lysenko.domain.models.Hero
 import com.lysenko.domain.models.Player
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
-class RepositoryImpl(private var roomAppDatabase: RoomAppDatabase,
-                     private var totalAppStartsCount: Int)
-    : IRepository {
+class RepositoryImpl(
+    private var roomAppDatabase: RoomAppDatabase,
+    private var totalAppStartsCount: Int
+) : IRepository {
 
-    override fun fetchHeroes(): Observable<List<Hero>> {
+    override suspend fun fetchHero(): Deferred<List<Hero>> {
 
-        val observsbleListHeroFromNet = DotaProviderImpl.getHeroStats().map {
-            roomAppDatabase.heroDao().insertHero(HeroConverterImpl.convertApiToDB(it))
-            HeroConverterImpl.convertApiToUI(it)
-        }.subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
+        return GlobalScope.async {
 
-        val observsbleListHeroFromDB = roomAppDatabase.heroDao().fetchHeroes().map {
-            HeroConverterImpl.convertDBtoUI(it)
-        }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            val listHeroStstsFromApi = DotaProviderImpl.getHeroStats().await()
+            val listHeroEntityFromDB = roomAppDatabase.heroDao().fetchHeroes()
 
-        return if ((totalAppStartsCount % 20) == 0) {
-            observsbleListHeroFromNet
-        } else observsbleListHeroFromDB
+            if (listHeroEntityFromDB.isEmpty()||((totalAppStartsCount%20)!=0)) {
+                listHeroStstsFromApi.map {
+                    roomAppDatabase.heroDao().insertHero(HeroConverterImpl.convertApiToDB(it))
+                    println("AAAA  герои в базу данных из ретрофита: ${it::class.java.simpleName}")
+                    HeroConverterImpl.convertApiToUI(it)
+                }
+            } else listHeroEntityFromDB.map {
+                println("AAAA герои из базы данных: ${it::class.java.simpleName}")
+                HeroConverterImpl.convertDBtoUI(it)
+            }
 
+        }
     }
 
-    override fun fetchPlayers(): Observable<List<Player>> {
+    override suspend fun fetchPlayers(): Deferred<List<Player>> {
 
-        val observsbleListPlayersFromNet = DotaProviderImpl.getPlayers().map {
-            roomAppDatabase.playerDao().insertPlayer(PlayerConverterImpl.convertApiToDB(it))
-            PlayerConverterImpl.convertApiToUI(it)
-        }.subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
+        return GlobalScope.async {
 
-        val observsbleListPlayersFromDB = roomAppDatabase.playerDao().fetchPlayers().map {
-            PlayerConverterImpl.convertDBtoUI(it)
-        }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            val listPlayersFromApi = DotaProviderImpl.getPlayers().await()
+            val listPlayersEntityFromDB = roomAppDatabase.playerDao().fetchPlayers()
 
-        return if ((totalAppStartsCount % 20) == 0) {
-            observsbleListPlayersFromNet
-        } else observsbleListPlayersFromDB
+            if (listPlayersEntityFromDB.isEmpty()||((totalAppStartsCount%20)!=0)) {
+                listPlayersFromApi.map {
+                    roomAppDatabase.playerDao().insertPlayer(PlayerConverterImpl.convertApiToDB(it))
+                    println("AAAA  игроки в базу данных из ретрофита: ${it::class.java.simpleName}")
+                    PlayerConverterImpl.convertApiToUI(it)
+                }
+            } else listPlayersEntityFromDB.map {
+                println("AAAA  игроки из базы данных: ${it::class.java.simpleName}")
+                PlayerConverterImpl.convertDBtoUI(it)
+            }
 
+        }
     }
+
 }
+

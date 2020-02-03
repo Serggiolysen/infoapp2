@@ -41,9 +41,9 @@ class PlayerDetailsFragment : Fragment() {
                 country_code.text = getString(R.string.no_country_info)
             } else country_code.text = "Country: ${player.country_code}"
 
-            if (player.team_name == null || player.team_name!!.length < 1) {
-                getString(R.string.not_consists_in_team)
-            } else team_name.text = "Team: ${player.team_name}"
+//            if (player.team_name == null || player.team_name!!.length < 1) {
+//                getString(R.string.not_consists_in_team)
+//            } else team_name.text = "Team: ${player.team_name}"
 
             if (player.is_pro == true) {
                 is_pro.text = getString(R.string.pro)

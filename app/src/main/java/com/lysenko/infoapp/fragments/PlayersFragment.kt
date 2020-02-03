@@ -48,11 +48,11 @@ class PlayersFragment :Fragment(), PlayersListView{
         })
     }
 
-    override fun showPlayers(listWithHeroes: List<Player>) {
+    override fun showPlayers(listWithPlayers: List<Player>) {
         recyclerPlayersList.visibility = View.VISIBLE
         loadingMessage.visibility = View.GONE
 
-        mAdapter.setData(listWithHeroes)
+        mAdapter.setData(listWithPlayers)
     }
 
     override fun showLoading() {

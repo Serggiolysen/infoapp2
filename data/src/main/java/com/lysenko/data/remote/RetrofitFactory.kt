@@ -1,11 +1,14 @@
 package com.lysenko.data.remote.helpers
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.lysenko.data.remote.services.ApiService
+import kotlinx.serialization.UnstableDefault
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitFactory {
     companion object {
@@ -16,19 +19,21 @@ class RetrofitFactory {
             val loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             return OkHttpClient.Builder()
-                    .addInterceptor(loggingInterceptor)
-                    .build()
+                .addInterceptor(loggingInterceptor)
+                .build()
         }
     }
 
+    @UnstableDefault
     private fun getRetrofitClient(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(getOkHttpInstance())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
+            .baseUrl(baseUrl)
+//            .client(getOkHttpInstance())
+            .addConverterFactory(Json.nonstrict.asConverterFactory("application/json".toMediaType()))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .build()
     }
 
+    @UnstableDefault
     fun getHeroesService() = getRetrofitClient().create(ApiService::class.java)
 }

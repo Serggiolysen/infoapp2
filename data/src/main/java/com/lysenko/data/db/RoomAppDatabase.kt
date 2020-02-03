@@ -11,7 +11,7 @@ import com.lysenko.data.db.model.HeroEntity
 import com.lysenko.data.db.model.PlayerEntity
 
 
-@Database(entities = [HeroEntity::class, PlayerEntity::class], version = 2)
+@Database(entities = [HeroEntity::class, PlayerEntity::class], version = 3)
 abstract class RoomAppDatabase : RoomDatabase() {
 
     abstract fun heroDao(): HeroDao

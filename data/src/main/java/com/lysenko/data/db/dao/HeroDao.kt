@@ -12,9 +12,9 @@ import io.reactivex.Observable
 interface HeroDao {
 
     @Query(TableSqlContract.fetchHeroes)
-    fun fetchHeroes(): Observable<List<HeroEntity>>
+    fun fetchHeroes(): List<HeroEntity>
 
     @Insert(entity = HeroEntity::class, onConflict = OnConflictStrategy.REPLACE)
-    fun insertHero(heroEntityList: List<HeroEntity>)
+    fun insertHero(heroEntity: HeroEntity)
 
 }

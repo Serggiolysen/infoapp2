@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -35,21 +36,19 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':data')
 
-    def coroutinesVersion = '1.3.0-M1'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-
-    //RX
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
-    implementation 'io.reactivex:rxandroid:0.25.0'
+    //coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3'
 
     //Room
     def room_version = "2.2.3"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
-    implementation "androidx.room:room-rxjava2:$room_version"
 
-    implementation "org.jetbrains.anko:anko:0.10.8"
+    //RX
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex:rxandroid:0.25.0'
+
 }

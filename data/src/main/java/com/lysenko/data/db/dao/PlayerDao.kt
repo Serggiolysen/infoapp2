@@ -12,9 +12,9 @@ import io.reactivex.Observable
 interface PlayerDao {
 
     @Query(TableSqlContract.fetchPlayers)
-    fun fetchPlayers(): Observable<List<PlayerEntity>>
+    fun fetchPlayers(): List<PlayerEntity>
 
     @Insert(entity = PlayerEntity::class, onConflict = OnConflictStrategy.REPLACE)
-    fun insertPlayer(playerEntityList: List<PlayerEntity>)
+    fun insertPlayer(playerEntity: PlayerEntity)
 
 }

@@ -2,15 +2,15 @@ package com.lysenko.data.remote.services
 
 import com.lysenko.data.remote.helpers.models.HeroStatApi
 import com.lysenko.data.remote.helpers.models.PlayersApi
-import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
-interface   ApiService {
+interface ApiService {
 
     @GET("./heroStats")
-    fun getHeroesStats(): Observable<List<HeroStatApi>>
+    fun getHeroesStats(): Deferred<List<HeroStatApi>>
 
 
     @GET("./proPlayers")
-    fun getPlayers(): Observable<List<PlayersApi>>
+    fun getPlayers(): Deferred<List<PlayersApi>>
 }

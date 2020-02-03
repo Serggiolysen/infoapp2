@@ -10,18 +10,18 @@ data class Player(
         val personaname: String?,
         val name: String?,
         val country_code: String?,
-        val team_name: String?,
+//        val team_name: String?,
         val is_pro: Boolean
 ):Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readInt(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readByte() != 0.toByte()) {
+        parcel.readInt(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte()
+    ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -31,7 +31,6 @@ data class Player(
         parcel.writeString(personaname)
         parcel.writeString(name)
         parcel.writeString(country_code)
-        parcel.writeString(team_name)
         parcel.writeByte(if (is_pro) 1 else 0)
     }
 

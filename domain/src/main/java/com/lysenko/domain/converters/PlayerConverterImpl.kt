@@ -7,60 +7,42 @@ import com.lysenko.domain.models.Player
 
 object PlayerConverterImpl {
 
-    fun convertApiToUI(list: List<PlayersApi>): List<Player> {
-        val tmpArrayList = ArrayList<Player>()
-        for (it in list) {
-            tmpArrayList.add(
-                    Player(
-                            account_id = it.account_id,
-                            avatar = it.avatarmedium,
-                            avatarfull = it.avatarfull,
-                            personaname = it.personaname,
-                            name = it.name,
-                            country_code = it.country_code,
-                            team_name = it.team_name,
-                            is_pro = it.is_pro
-                    )
-            )
-        }
-        return tmpArrayList
+    fun convertApiToUI(playersApi: PlayersApi): Player {
+        return Player(
+                account_id = playersApi.account_id,
+                avatar = playersApi.avatarmedium,
+                avatarfull = playersApi.avatarfull,
+                personaname = playersApi.personaname,
+                name = playersApi.name,
+                country_code = playersApi.country_code,
+//                team_name = playersApi.team_name,
+                is_pro = playersApi.is_pro
+        )
     }
 
-    fun convertApiToDB(list: List<PlayersApi>): List<PlayerEntity> {
-        val tmpArrayList = ArrayList<PlayerEntity>()
-        for (it in list) {
-            tmpArrayList.add(
-                    PlayerEntity(
-                            account_id = it.account_id,
-                            avatar = it.avatarmedium,
-                            avatarfull = it.avatarfull,
-                            personaname = it.personaname,
-                            name = it.name,
-                            country_code = it.country_code,
-                            team_name = it.team_name,
-                            is_pro = it.is_pro
-                    )
-            )
-        }
-        return tmpArrayList
+    fun convertApiToDB(playersApi: PlayersApi): PlayerEntity {
+        return PlayerEntity(
+                account_id = playersApi.account_id,
+                avatar = playersApi.avatarmedium,
+                avatarfull = playersApi.avatarfull,
+                personaname = playersApi.personaname,
+                name = playersApi.name,
+                country_code = playersApi.country_code,
+//                team_name = playersApi.team_name,
+                is_pro = playersApi.is_pro
+        )
     }
 
-    fun convertDBtoUI(list: List<PlayerEntity>): List<Player> {
-        val tmpArrayList = ArrayList<Player>()
-        for (it in list) {
-            tmpArrayList.add(
-                    Player(
-                            account_id = it.account_id,
-                            avatar = it.avatar,
-                            avatarfull = it.avatarfull,
-                            personaname = it.personaname,
-                            name = it.name,
-                            country_code = it.country_code,
-                            team_name = it.team_name,
-                            is_pro = it.is_pro
-                    )
-            )
-        }
-        return tmpArrayList
+    fun convertDBtoUI(listEntity: PlayerEntity): Player {
+        return Player(
+                account_id = listEntity.account_id,
+                avatar = listEntity.avatar,
+                avatarfull = listEntity.avatarfull,
+                personaname = listEntity.personaname,
+                name = listEntity.name,
+                country_code = listEntity.country_code,
+//                team_name = listEntity.team_name,
+                is_pro = listEntity.is_pro
+        )
     }
 }
