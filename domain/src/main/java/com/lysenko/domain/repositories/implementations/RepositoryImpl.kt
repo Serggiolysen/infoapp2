@@ -1,29 +1,42 @@
 package com.lysenko.domain.repositories.implementations
 
 import com.lysenko.data.db.RoomAppDatabase
+import com.lysenko.data.di.DataComponent
 import com.lysenko.data.remote.providers.DotaProviderImpl
 import com.lysenko.domain.converters.HeroConverterImpl
 import com.lysenko.domain.converters.PlayerConverterImpl
+import com.lysenko.domain.di.DomainComponent
 import com.lysenko.domain.models.Hero
 import com.lysenko.domain.models.Player
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import javax.inject.Inject
 
-class RepositoryImpl(
-    private var roomAppDatabase: RoomAppDatabase,
-    private var totalAppStartsCount: Int
+class RepositoryImpl
+@Inject constructor
+    (
+    val roomAppDatabase: RoomAppDatabase,
+    val totalAppStartsCount: Int,
+    domainComponent: DomainComponent
 ) : IRepository {
+
+    init {
+        domainComponent.inject(this)
+    }
+
+    @Inject lateinit var dotaProviderImpl: DotaProviderImpl
+
 
     override suspend fun fetchHero(): Deferred<List<Hero>> {
 
         return GlobalScope.async {
 
-            val listHeroStstsFromApi = DotaProviderImpl.getHeroStats().await()
+            val listHeroStatsFromApi = dotaProviderImpl.getHeroStats().await()
             val listHeroEntityFromDB = roomAppDatabase.heroDao().fetchHeroes()
 
             if (listHeroEntityFromDB.isEmpty()||((totalAppStartsCount%20)!=0)) {
-                listHeroStstsFromApi.map {
+                listHeroStatsFromApi.map {
                     roomAppDatabase.heroDao().insertHero(HeroConverterImpl.convertApiToDB(it))
                     println("AAAA  герои в базу данных из ретрофита: ${it::class.java.simpleName}")
                     HeroConverterImpl.convertApiToUI(it)
@@ -40,7 +53,7 @@ class RepositoryImpl(
 
         return GlobalScope.async {
 
-            val listPlayersFromApi = DotaProviderImpl.getPlayers().await()
+            val listPlayersFromApi = dotaProviderImpl.getPlayers().await()
             val listPlayersEntityFromDB = roomAppDatabase.playerDao().fetchPlayers()
 
             if (listPlayersEntityFromDB.isEmpty()||((totalAppStartsCount%20)!=0)) {

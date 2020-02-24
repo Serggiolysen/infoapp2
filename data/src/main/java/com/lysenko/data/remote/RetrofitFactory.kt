@@ -9,10 +9,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import javax.inject.Inject
 
-class RetrofitFactory {
+class RetrofitFactory @Inject constructor() {
     companion object {
-
         val baseUrl = "https://api.opendota.com/api/"
 
         private fun getOkHttpInstance(): OkHttpClient {

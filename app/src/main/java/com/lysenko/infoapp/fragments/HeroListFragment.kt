@@ -33,8 +33,8 @@ class HeroListFragment: Fragment(), HeroListView{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         heroListPresenter = HeroListPresenter(heroListView = this, roomAppDatabase = App.roomDataBase,
-                totalAppStartsCount = App.totalCount)
-        heroListPresenter.fetchHeroes()
+                totalAppStartsCount = App.totalCount, domainComponent = App.domainComponent)
+        heroListPresenter.fetchPlayers()
         setupAdapter()
     }
 
